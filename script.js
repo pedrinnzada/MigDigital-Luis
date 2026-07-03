@@ -351,11 +351,19 @@ window.addEventListener('scroll',()=>{
     }
   }, { passive: true });
 
-  // ─── WhatsApp button (Open Modal) ────────────
-  document.getElementById('btn-whatsapp')?.addEventListener('click', () => {
+  // ─── Iniciar Atendimento (Open Modal) ───────
+  document.getElementById('btn-iniciar-atendimento')?.addEventListener('click', (e) => {
+    e.preventDefault();
     const modal = document.getElementById('lead-modal');
     modal?.classList.add('open');
     document.body.style.overflow = 'hidden';
+  });
+
+  // Botão final: redireciona direto (sem modal)
+  document.getElementById('btn-final-whatsapp')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const whatsappNumber = '5531982972332';
+    window.open(`https://wa.me/${whatsappNumber}`, '_blank');
   });
 
   // Modal Close Logic
@@ -468,13 +476,10 @@ window.addEventListener('scroll',()=>{
     talk_human: {
       text: "Vou te encaminhar para Luis no WhatsApp. Só um momento...",
       action: () => {
-        // Fecha o chatbot para não ficar sobreposto ao modal.
+        // Fecha o chatbot e redireciona direto para o WhatsApp (sem modal/form).
         chatbotWindow?.classList.remove('open');
-
-        // Abre o modal de cadastro para capturar os dados e enviar ao atendente selecionado.
-        const modal = document.getElementById('lead-modal');
-        modal?.classList.add('open');
-        document.body.style.overflow = 'hidden';
+        const whatsappNumber = '5531982972332';
+        window.open(`https://wa.me/${whatsappNumber}`, '_blank');
       },
       options: [{ text: "Voltar", id: "start" }]
     }
